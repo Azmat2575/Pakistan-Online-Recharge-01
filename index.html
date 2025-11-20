@@ -1,1 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PakRecharge - Pakistani SIM Top-Up</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/logo.png" alt="PakRecharge" class="logo-icon">
+                    <h1>PakRecharge</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active">Home</a></li>
+                        <li><a href="#" class="nav-link">Top-Up</a></li>
+                        <li><a href="#" class="nav-link">Bundles</a></li>
+                        <li><a href="#" class="nav-link">History</a></li>
+                        <li><a href="#" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu">
+                    <span>☰</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Instant Mobile Top-Up</h2>
+                    <p>Recharge your Pakistani SIM in seconds. Support for all major networks.</p>
+                </div>
+            </section>
+
+            <!-- Network Logos -->
+            <div class="networks">
+                <div class="network-logo" data-network="jazz">
+                    <div class="network-icon">J</div>
+                    <span>Jazz</span>
+                </div>
+                <div class="network-logo" data-network="zong">
+                    <div class="network-icon">Z</div>
+                    <span>Zong</span>
+                </div>
+                <div class="network-logo" data-network="telenor">
+                    <div class="network-icon">T</div>
+                    <span>Telenor</span>
+                </div>
+                <div class="network-logo" data-network="ufone">
+                    <div class="network-icon">U</div>
+                    <span>Ufone</span>
+                </div>
+            </div>
+
+            <!-- Top-Up Card -->
+            <div class="card">
+                <h2 class="section-title">Mobile Top-Up</h2>
+                <form class="topup-form" id="topupForm">
+                    <div class="form-group">
+                        <label for="network">Select Network</label>
+                        <select id="network" required>
+                            <option value="">Choose your network</option>
+                            <option value="jazz">Jazz</option>
+                            <option value="zong">Zong</option>
+                            <option value="telenor">Telenor</option>
+                            <option value="ufone">Ufone</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="03XX-XXXXXXX" pattern="[0-9]{11}" required>
+                        <small class="help-text">Enter 11-digit number without dashes</small>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Select Amount (PKR)</label>
+                        <div class="amount-options">
+                            <div class="amount-option" data-amount="50">50</div>
+                            <div class="amount-option" data-amount="100">100</div>
+                            <div class="amount-option" data-amount="200">200</div>
+                            <div class="amount-option" data-amount="300">300</div>
+                            <div class="amount-option" data-amount="500">500</div>
+                            <div class="amount-option" data-amount="1000">1000</div>
+                        </div>
+                        <input type="hidden" id="amount" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="customAmount">Or Enter Custom Amount</label>
+                        <input type="number" id="customAmount" placeholder="Enter amount in PKR" min="10" max="10000">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Payment Method</label>
+                        <div class="payment-options">
+                            <div class="payment-option" data-method="jazzcash">
+                                <div class="payment-icon">J</div>
+                                <span>JazzCash</span>
+                            </div>
+                            <div class="payment-option" data-method="easypaisa">
+                                <div class="payment-icon">E</div>
+                                <span>EasyPaisa</span>
+                            </div>
+                            <div class="payment-option" data-method="card">
+                                <div class="payment-icon">💳</div>
+                                <span>Bank Card</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="paymentMethod" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                            <span class="btn-text">Proceed to Payment</span>
+                            <span class="btn-loading" style="display: none;">Processing...</span>
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">✓</div>
+                    <h3>Top-Up Successful!</h3>
+                    <p>Your mobile top-up of <strong id="successAmount"></strong> for <strong id="successNumber"></strong> has been processed successfully.</p>
+                    <p>You will receive a confirmation SMS shortly.</p>
+                </div>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="card">
+                <h2 class="section-title">Why Choose PakRecharge?</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Instant Recharge</h3>
+                        <p>Get your mobile balance updated within seconds after payment confirmation.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Secure Payments</h3>
+                        <p>Your payment information is protected with industry-standard security measures.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🕒</div>
+                        <h3>24/7 Service</h3>
+                        <p>Recharge your mobile anytime, anywhere with our round-the-clock service.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📱</div>
+                        <h3>All Networks</h3>
+                        <p>Support for all major Pakistani mobile networks and operators.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bundle Packages -->
+            <div class="card">
+                <h2 class="section-title">Popular Bundle Packages</h2>
+                <div class="bundles-grid">
+                    <div class="bundle-card">
+                        <h3>Internet Bundle</h3>
+                        <div class="bundle-price">Rs. 100</div>
+                        <ul class="bundle-features">
+                            <li>2GB Internet</li>
+                            <li>7 Days Validity</li>
+                            <li>Free WhatsApp</li>
+                        </ul>
+                        <button class="btn btn-outline">Buy Now</button>
+                    </div>
+                    <div class="bundle-card">
+                        <h3>Call Package</h3>
+                        <div class="bundle-price">Rs. 150</div>
+                        <ul class="bundle-features">
+                            <li>500 Minutes</li>
+                            <li>1000 SMS</li>
+                            <li>30 Days Validity</li>
+                        </ul>
+                        <button class="btn btn-outline">Buy Now</button>
+                    </div>
+                    <div class="bundle-card">
+                        <h3>Super Bundle</h3>
+                        <div class="bundle-price">Rs. 300</div>
+                        <ul class="bundle-features">
+                            <li>5GB Internet</li>
+                            <li>1000 Minutes</li>
+                            <li>30 Days Validity</li>
+                        </ul>
+                        <button class="btn btn-outline">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="PakRecharge" class="logo-icon">
+                        <h2>PakRecharge</h2>
+                    </div>
+                    <p>Your trusted partner for mobile top-ups in Pakistan.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="#">Home</a>
+                        <a href="#">Top-Up</a>
+                        <a href="#">Bundles</a>
+                        <a href="#">History</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <div class="footer-links">
+                        <a href="#">Help Center</a>
+                        <a href="#">FAQ</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <p>📞 +92-300-1234567</p>
+                        <p>✉️ support@pakrecharge.com</p>
+                        <p>🏠 Karachi, Pakistan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2024 PakRecharge. All rights reserved.
+                </div>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
